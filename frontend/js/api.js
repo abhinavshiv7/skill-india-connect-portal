@@ -8,11 +8,9 @@ class API {
       'Content-Type': 'application/json',
       ...options.headers
     };
-
     if (token) {
       headers['Authorization'] = `Bearer ${token}`;
     }
-
     const config = {
       ...options,
       headers

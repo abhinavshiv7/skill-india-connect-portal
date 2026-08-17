@@ -8,12 +8,10 @@ const { pool } = require('../config/pg');
 const applyForJob = async (req, res) => {
   try {
     const { jobId, coverLetter } = req.body;
-
     const job = await Job.findById(jobId);
     if (!job) {
       return res.status(404).json({ message: 'Job not found' });
     }
-
     const applicationExists = await Application.findOne({ job: jobId, applicant: req.user._id });
     if (applicationExists) {
       return res.status(400).json({ message: 'You have already applied for this job' });
